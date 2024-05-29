@@ -1,0 +1,47 @@
+{# GOOGLE GRAPHS #}
+{% block scripts %}
+    <!-- include library -->
+    {% include "charts/loader.html.j2" %}
+
+    <!-- name is name for function and the chart, needs to be unique across other chatrs in a file -->
+    {% with name=g[0][0], data=g[0][1], options=g[0][2] %}
+        <!-- select desired chart script -->
+        {% include "charts/scatter_script.html.j2" %}
+    {% endwith %}
+{% endblock %}
+
+{% block content %}
+    <!-- name needs to be the same as in script -->
+    {% with name=g[0][0] %}
+        <!-- dont change this -->
+        {% include "charts/div.html.j2" %}
+    {% endwith %}
+{% endblock %}
+
+<!-- example python code for scatterplot and table
+kwargs["scatter"] = {
+    "name": "ahoj",
+    "data": [['Age', 'Weight'], [8, 12], [4, 5.5], [11, 14], [4, 5], [3, 3.5], [6.5, 7]],
+    "options": {"title": 'Age vs. Weight comparison', "hAxis": {"title": 'Age', "minValue": 0, "maxValue": 15}, "vAxis": {"title": 'Weight', "minValue": 0, "maxValue": 15}, "legend": 'none'}
+}
+kwargs["table"] = {
+    "name": "table",
+    "columns": [["string", "Name"], ["number", "Salary"], ["boolean", "Full-time"]],
+    "rows": [
+        ['Mike',  10000, True],
+        ['Jim',   8000,  False],
+        ['Alice', 12500, True],
+        ['Bob',   7000,  True]
+    ]
+}
+ -->
+
+{# PLOTLY EXPRESS #}
+{% block scripts %}
+    {% include "charts/px_script.html.j2" %}
+{% endblock scripts %}
+{% block content %}
+    {% with name=wats[0], var_name=wats[1], JSONdata=wats[2]%}
+        {% include "charts/div_px.html.j2" %}
+    {% endwith %}
+{% endblock content %}

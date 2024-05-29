@@ -1,0 +1,5 @@
+<div id="{{ name }}"></div>
+<script>
+    var {{ var_name | safe }} = {{ JSONdata | safe }}
+    Plotly.plot("{{ name }}", {{ var_name | safe }}, {})
+</script>

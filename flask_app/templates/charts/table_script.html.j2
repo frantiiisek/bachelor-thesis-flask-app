@@ -1,0 +1,30 @@
+<script>
+    google.charts.setOnLoadCallback(drawTable{{name}});
+
+    function drawTable{{name}}() {
+        var data = new google.visualization.DataTable();
+        {% for col_type, col_name in columns %}
+            data.addColumn('{{ col_type }}', '{{ col_name }}');
+        {% endfor %}
+        data.addRows([
+            {% for row in rows %}
+                [
+                    {% for value in row %}
+                        {% if value|string == "" %}
+                            ,
+                        {% elif value is string %}
+                            '{{ value }}',
+                        {% elif value is boolean %}
+                            {{ value|lower|safe }},
+                        {% else %}
+                            {{ value }},
+                        {% endif %}
+                    {% endfor %}
+                ],
+            {% endfor %}
+        ]);
+        var table = new google.visualization.Table(document.getElementById('{{name}}'));
+
+        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+    }
+</script>

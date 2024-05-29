@@ -1,0 +1,24 @@
+{% extends "layout.html.j2" %}
+{% block title %}{{ wats["pub"][1] }} | Autor{% endblock title %}
+{% block scripts %}
+    {% include "charts/px_script.html.j2" %}
+{% endblock scripts %}
+{% block content %}
+    <h1>{{wats["pub"][1]}}</h1>
+    Authors:
+        {% for author in wats["authors"] %}
+            {% if author[-1]|string != "Non-faculty member(s)" %}
+                {# <a href="{{ url_for("general.search", page=1, where=where, method=method, query=query) }}">1 &lt;&lt;</a> #}
+                <a href="{{ url_for('author.author', pid=author[1]) }}">{{author[-1]}}</a>, 
+            {% else %}
+                {{author[-1]}}
+            {% endif %}
+        {% endfor %}<br>
+    EPC category: {{ wats["pub"][9]}}<br>
+    {% if wats["pub"][12] %}
+        Citations on Google Scholar: {{wats["pub"][12]}}
+    {% endif %}<br>
+    {% with name=wats["pie"][0], var_name=wats["pie"][1], JSONdata=wats["pie"][2]%}
+        {% include "charts/div_px.html.j2" %}
+    {% endwith %}
+{% endblock content %}

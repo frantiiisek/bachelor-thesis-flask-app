@@ -1,0 +1,46 @@
+{% extends "layout.html.j2" %}
+{% block content %}
+    {% if not wats:%}
+        <p>No record</p>
+    {% else %}
+    <div>
+        {% if page > 1 %}
+            <a href="{{ url_for("general.search", page=1, where=where, method=method, query=query) }}">1 &lt;&lt;</a> | 
+            <a href="{{ url_for("general.search", page=page-1, where=where, method=method, query=query) }}">&lt;</a> |
+        {% endif %}
+        {{ page }}
+        {% if page < max_pages %}
+            | 
+            <a href="{{ url_for("general.search", page=page+1, where=where, method=method, query=query) }}">&gt;</a> | 
+            <a href="{{ url_for("general.search", page=max_pages, where=where, method=method, query=query) }}">&gt;&gt; {{max_pages}}</a>
+        {% endif %}
+        <br><br>
+        <table>
+            <th>{{heading}}</th> <!-- add colspan -->
+            {% for wat in wats: %}
+                <tr>
+                    <td>
+                    {% if where=="authors" %}
+                        <a href="{{ url_for("author.author", pid=wat[1]) }}">{{wat[0]}} | {{wat[2]}}</a>
+                    {% elif where=="publications" %}
+                        <a href="{{ url_for("publication.publication", publ_index=wat[1]) }}">{{wat[0]}} | {{wat[2]}}</a>
+                    {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+
+        {% if page > 1 %}
+            <a href="{{ url_for("general.search", page=1, where=where, method=method, query=query) }}">1 &lt;&lt;</a> | 
+            <a href="{{ url_for("general.search", page=page-1, where=where, method=method, query=query) }}">&lt;</a> |
+        {% endif %}
+        {{ page }}
+        {% if page < max_pages %}
+            | 
+            <a href="{{ url_for("general.search", page=page+1, where=where, method=method, query=query) }}">&gt;</a> | 
+            <a href="{{ url_for("general.search", page=max_pages, where=where, method=method, query=query) }}">&gt;&gt; {{max_pages}}</a>
+        {% endif %}
+    </div>
+    {% endif %}
+{% endblock %}

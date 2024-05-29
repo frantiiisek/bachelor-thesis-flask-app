@@ -1,0 +1,87 @@
+{% extends "layout.html.j2" %}
+{% block scripts %}
+<style>
+    th, td {
+        padding: 15px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<h1>Search</h1>
+<form method="GET" action="{{ url_for('general.search') }}">
+    <table>
+        <tr>
+            <td>
+                Search by:<br>
+                <input type="radio" name="where" id="Autor" value="authors" required checked><label for="Autor">Author name</label><br>
+                <input type="radio" name="where" id="Nazov" value="publications"><label for="Nazov">Publication title</label>
+            </td>
+            <td>
+                How:<br>
+                <input type="radio" name="method" id="Zacina" value="begins" required checked><label for="Zacina">Begins with</label><br>
+                <input type="radio" name="method" id="Obsahuje" value="contains" ><label for="Obsahuje">Includes</label>
+            </td>
+        </tr>
+        <tr >
+            <td colspan=2 style="text-align: center;">
+                <input type="text" name="query" placeholder="Enter your search" required>
+                <button type="submit">Search</button>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="{{ url_for('general.search', query="", where='authors', method='begins')}}">List of all authors</a></td>
+            <td><a href="{{ url_for('general.search', query="", where='publications', method='begins')}}">List of all publications</a></td>
+        </tr>
+    </table>
+</form>
+
+<h1>List of DEA models</h1>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Inputs</th>
+        <th>Outputs</th>
+    </tr>
+    {% for row in dea_toc %}
+    <tr>
+        <td><a href="{{ url_for('general.dea', path=row[0], x_scale='True', y_scale='True')}}">{{row[1]}}</a></td>
+        <td>
+            <ul>
+                {% for a in row[2] %}
+                    <li>{{a}}</li>
+                {% endfor %}
+            </ul>
+        </td>
+        <td>
+            <ul>
+                {% for a in row[3] %}
+                    <li>{{a}}</li>
+                {% endfor %}
+            </ul>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</ul>
+
+<!-- 
+<table>
+    <tr>
+        <th>Osoby abecedne</th>
+        <th>Publikácie abecedne</th>
+    </tr>
+    {% for wat in wats %}
+        <tr>
+            <td>
+                <a
+                    href="\{\{ url_for("author_on", letter=wat) }}">\{\{ wat }}</a>
+            </td>
+            <td>
+                <a
+                    href="\{\{ url_for("publication_on", letter=wat) }}">\{\{ wat }}</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+-->
+{% endblock %}

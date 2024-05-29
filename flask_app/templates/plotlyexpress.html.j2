@@ -1,0 +1,9 @@
+{% extends "layout.html.j2" %}
+{% block scripts %}
+    {% include "charts/px_script.html.j2" %}
+{% endblock scripts %}
+{% block content %}
+    {% with name=wats[0], var_name=wats[1], JSONdata=wats[2]%}
+        {% include "charts/div_px.html.j2" %}
+    {% endwith %}
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% extends "layout.html.j2" %}
+{% block title %}{{ person_data["pers_name"] }} | Autor{% endblock title %}
+{% block scripts %}
+    {% include "charts/loader.html.j2" %}
+    {% with columns=summary["columns"], rows=summary["rows"], name=summary["name"] %}
+        {% include "charts/table_script.html.j2" %}
+    {% endwith %}
+    {% with columns=timetables["columns"], rows=timetables["rows"], name=timetables["name"] %}
+        {% include "charts/table_script.html.j2" %}
+    {% endwith %}
+    {% with columns=publications["columns"], rows=publications["rows"], name=publications["name"] %}
+        {% include "charts/table_script.html.j2" %}
+    {% endwith %}
+{% endblock %}
+
+{% block content %}
+    <p>
+        <b>{{ person_data["pers_name"] }}</b>, {{ person_data["dept"]}}
+    </p>
+    {% if person_data["sch_id"] is not none %}
+        <a href="https://scholar.google.com/citations?hl=en&user={{ person_data['sch_id'] }}" target="_blank">Google scholar profile</a>
+    {% endif %}
+    {% if person_data["orc_id"] is not none %}
+        <a href="https://orcid.org/{{ person_data['orc_id'] }}" target="_blank">Orcid profile</a>
+    {% endif %}
+    <br>
+    List of summary of the data we have stored. Range of years the window represents is [2023 - 2 - 3*window, 2023 - 3*window]
+    {% with name=summary["name"], width=none, height=none %}
+        {% include "charts/div.html.j2" %}
+    {% endwith %}
+    List of lectures from last three years:
+    {% with name=timetables["name"], width=none, height=none %}
+        {% include "charts/div.html.j2" %}
+    {% endwith %}
+    List of publications from last three years:
+    {% with name=publications["name"], width=none, height=none %}
+        {% include "charts/div.html.j2" %}
+    {% endwith %}
+{% endblock %}

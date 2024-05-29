@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+    <head>
+        <title>{% block title %}Index{% endblock %}</title>
+        {% block scripts %}{% endblock %}
+        <style>#footer {bottom: 0; height: 2.5rem;}</style>
+    </head>
+
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid;
+        }
+    </style>
+
+    <body>
+        <nav>
+            <a href="\">Index</a> | 
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('general.logout')}}">logout</a>
+            {% else %}
+                <a href="{{ url_for('general.login')}}">login</a>
+            {% endif %}
+        </nav>
+        <br>
+        <div id="content">
+            {% block content %} Something's wrong, you should't see this message {% endblock %}
+        </div>
+    </body>
+
+    <footer id="footer">František. Created 2024</footer>
+</html>

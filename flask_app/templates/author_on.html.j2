@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+
+    <head>
+        <title>Index</title>
+    </head>
+
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid;
+        }
+    </style>
+
+    <body>
+        {% if not wats:%}
+            <p>No record</p>
+        {% else %}
+            <table>
+                {% for wat in wats: %}
+                    <tr>
+                        <td>
+                            <a href="{{ url_for("author", pid=wat[1]) }}">{{wat[0]}}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </body>
+
+</html>

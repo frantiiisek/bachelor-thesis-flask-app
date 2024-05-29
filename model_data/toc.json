@@ -1,0 +1,77 @@
+{
+    "model_everything_results": {
+        "name": "4.2 - Every data available",
+        "input": [
+            "pay_grade",
+            "KAFZM",
+            "KAG",
+            "KAI",
+            "KAM\u0160",
+            "KDMFI",
+            "KEF",
+            "KI",
+            "KJFB",
+            "KJP",
+            "KMANM",
+            "KTF",
+            "KTV"
+        ],
+        "output": [
+            "avg_contrib",
+            "crossref",
+            "altmetric",
+            "scholar",
+            "n_publications",
+            "studentCountAll",
+            "weighted_avg_ans",
+            "credit_student",
+            "unique_course_count",
+            "hours_teached"
+        ],
+        "results": [
+            "eff"
+        ]
+    },
+    "model_no_dept_results": {
+        "name": "4.3 - Every data without departments",
+        "input": [
+            "pay_grade"
+        ],
+        "output": [
+            "avg_contrib",
+            "crossref",
+            "altmetric",
+            "scholar",
+            "n_publications",
+            "studentCountAll",
+            "weighted_avg_ans",
+            "credit_student",
+            "unique_course_count",
+            "hours_teached"
+        ],
+        "results": [
+            "efficiency"
+        ]
+    },
+    "model_KI_results": {
+        "name": "4.4 - Department of Informatics",
+        "input": [
+            "pay_grade"
+        ],
+        "output": [
+            "avg_contrib",
+            "crossref",
+            "altmetric",
+            "scholar",
+            "n_publications",
+            "studentCountAll",
+            "weighted_avg_ans",
+            "credit_student",
+            "unique_course_count",
+            "hours_teached"
+        ],
+        "results": [
+            "eff"
+        ]
+    }
+}

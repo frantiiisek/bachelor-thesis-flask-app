@@ -1,0 +1,15 @@
+{% extends "layout.html.j2" %}
+{% block title %} 
+{% if wats %}
+{{wats["type"]}} not found 
+{% else %}
+404 - Page not found
+{% endif %}
+{% endblock title %}
+{% block content %}
+{% if wats %}
+    {{wats["type"]}} # {{wats["id"]}} not found.
+{% else %}
+404 - Page not found
+{% endif %}
+{% endblock content %}

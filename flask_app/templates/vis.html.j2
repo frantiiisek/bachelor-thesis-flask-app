@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+
+    <head>
+        <title>{% block title %}Index{% endblock %}</title>
+        {% include "charts/px_script.html.j2" %}
+    </head>
+
+    <body>
+        <div id="content">
+            {% with name=wats[0], var_name=wats[1], JSONdata=wats[2]%}
+                {% include "charts/div_px.html.j2" %}
+            {% endwith %}
+        </div>
+    </body>
+</html>

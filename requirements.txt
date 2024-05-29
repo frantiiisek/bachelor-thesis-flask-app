@@ -1,0 +1,4 @@
+flask-login
+plotly
+pandas
+
